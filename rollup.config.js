@@ -36,7 +36,7 @@ export default {
 		sourcemap: true,
 		format: "iife",
 		name: "app",
-		file: "public/build/wordle-clone/bundle.js",
+		file: "public/wordle-clone/build/bundle.js",
 	},
 	plugins: [
 		svelte({
