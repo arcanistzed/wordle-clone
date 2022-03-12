@@ -41,8 +41,8 @@
 	{#each new Array(height) as _, i}
 		<row>
 			{#each new Array(width) as _, j}
-				{#if i === row}
-					<Letter {solution} word={words[row]?.join("")} letter={words[row]?.[j] ?? ""} />
+				{#if i <= row}
+					<Letter {solution} word={words[i]?.join("")} letter={words[i]?.[j] ?? ""} />
 				{:else}
 					<Letter {solution} word={""} letter={""} />
 				{/if}
