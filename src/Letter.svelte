@@ -4,7 +4,7 @@
 	export let word = "";
 
 	$: state =
-	// FIXME: APLLE, APELE, etc.
+		// FIXME: APLLE, APELE, etc.
 		letter.toLowerCase() === solution[word?.lastIndexOf(letter)] && letter
 			? "correct"
 			: solution.toLowerCase().includes(letter.toLowerCase()) && letter
