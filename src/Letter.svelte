@@ -1,7 +1,14 @@
 <script lang="ts">
 	export let letter = "";
+	export let solution = "";
+	export let word: string[] = [];
 
-	let state = "incorrect";
+	$: state =
+		letter.toLowerCase() === solution[word.indexOf(letter)] && letter
+			? "correct"
+			: solution.toLowerCase().includes(letter.toLowerCase()) && letter
+			? "almost"
+			: "incorrect";
 </script>
 
 <letter class={state}>

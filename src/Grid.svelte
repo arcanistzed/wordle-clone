@@ -33,7 +33,7 @@
 	{#each new Array(height) as _}
 		<row>
 			{#each new Array(width) as _, i}
-				<Letter letter={word[i] ?? ""} />
+				<Letter {solution} {word} letter={word[i] ?? ""}/>
 			{/each}
 		</row>
 	{/each}
