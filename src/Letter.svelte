@@ -35,7 +35,7 @@
 	}
 
 	.almost {
-		background-color: gold;
+		background-color: #ff9800;
 		box-shadow: 0 0 5px yellow;
 		color: white;
 	}
