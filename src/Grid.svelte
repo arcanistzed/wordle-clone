@@ -1,39 +1,51 @@
 <script lang="ts">
 	import Letter from "./Letter.svelte";
-	
-	let word: string[] = [];
 
-	let list = ["apple", "peach", "pears", "orange", "banana", "lemon", "kiwis"];
-	let solution = list[Math.floor(Math.random() * list.length)];
+	const words: string[][] = [];
+	let row = 0;
+
+	const list = ["apple" /* , "peach", "pears", "orange", "banana", "lemon", "kiwis" */];
+	const solution = list[Math.floor(Math.random() * list.length)];
 
 	function enterLetter(event: KeyboardEvent) {
 		if (event.key === "Backspace") {
-			word = word.slice(0, -1);
-		} else if (word.length >= solution.length) {
-			submitGuess(word);
+			words[row] = words[row].slice(0, -1);
+		} else if (words[row]?.length >= solution.length) {
+			submitGuess(words[row]);
 		} else if (event.key.match("^[A-Za-z]$")) {
-			word = [...word, event.key.toUpperCase()];
+			words[row] = [...(words[row] ?? []), event.key.toUpperCase()];
 		}
 	}
 
 	function submitGuess(word: string[]) {
 		if (word.join("").toLowerCase() === solution) {
 			alert("correct");
+			if (row + 1 < height) {
+				row++;
+			} else {
+				alert("start over");
+				row = 0;
+				words[row] = [];
+			}
 		} else {
 			console.log(word.join("").toLowerCase(), solution);
 		}
 	}
 
-	let width = solution.length;
-	let height = width + 1;
+	const width = solution.length;
+	const height = width + 1;
 </script>
 
 <svelte:window on:keydown={enterLetter} />
 <grid>
-	{#each new Array(height) as _}
+	{#each new Array(height) as _, i}
 		<row>
-			{#each new Array(width) as _, i}
-				<Letter {solution} {word} letter={word[i] ?? ""}/>
+			{#each new Array(width) as _, j}
+				{#if i === row}
+					<Letter {solution} word={words[row]?.join("")} letter={words[row]?.[j] ?? ""} />
+				{:else}
+					<Letter {solution} word={""} letter={""} />
+				{/if}
 			{/each}
 		</row>
 	{/each}

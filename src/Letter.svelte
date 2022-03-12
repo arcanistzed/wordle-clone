@@ -1,10 +1,11 @@
 <script lang="ts">
 	export let letter = "";
 	export let solution = "";
-	export let word: string[] = [];
+	export let word = "";
 
 	$: state =
-		letter.toLowerCase() === solution[word.indexOf(letter)] && letter
+	// FIXME: APLLE, APELE, etc.
+		letter.toLowerCase() === solution[word?.lastIndexOf(letter)] && letter
 			? "correct"
 			: solution.toLowerCase().includes(letter.toLowerCase()) && letter
 			? "almost"
@@ -27,6 +28,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		user-select: none;
 	}
 
 	.incorrect {
