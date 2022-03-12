@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Grid from "./Grid.svelte";
 
-	let word = [];
+	let word: string[] = [];
 
 	let solution = "apple";
 	let list = ["apple", "peach", "pears", "orange", "banana", "lemon", "kiwis"];
