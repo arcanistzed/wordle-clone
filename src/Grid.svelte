@@ -5,12 +5,13 @@
 	let row = 0;
 
 	const list = ["apple" /* , "peach", "pears", "orange", "banana", "lemon", "kiwis" */];
-	const solution = list[Math.floor(Math.random() * list.length)];
+	let solution = list[Math.floor(Math.random() * list.length)];
 
 	function enterLetter(event: KeyboardEvent) {
 		if (event.key === "Backspace") {
-			words[row] = words[row].slice(0, -1);
-		} else if (words[row]?.length >= solution.length) {
+			words[row] = words[row]?.slice(0, -1);
+		} else if (event.key === "Enter" && words[row]?.length >= solution.length) {
+			console.log("Pressed enter");
 			submitGuess(words[row]);
 		} else if (event.key.match("^[A-Za-z]$")) {
 			words[row] = [...(words[row] ?? []), event.key.toUpperCase()];
@@ -19,16 +20,15 @@
 
 	function submitGuess(word: string[]) {
 		if (word.join("").toLowerCase() === solution) {
-			alert("correct");
+			alert("Correct! Starting over with a new word...");
+			location.reload();
+		} else {
 			if (row + 1 < height) {
 				row++;
 			} else {
-				alert("start over");
-				row = 0;
-				words[row] = [];
+				alert("You lost! Starting over with a new word...");
+				location.reload();
 			}
-		} else {
-			console.log(word.join("").toLowerCase(), solution);
 		}
 	}
 
