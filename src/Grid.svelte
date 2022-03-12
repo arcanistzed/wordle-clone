@@ -3,8 +3,8 @@
 	
 	let word: string[] = [];
 
-	let solution = "apple";
 	let list = ["apple", "peach", "pears", "orange", "banana", "lemon", "kiwis"];
+	let solution = list[Math.floor(Math.random() * list.length)];
 
 	function enterLetter(event: KeyboardEvent) {
 		if (event.key === "Backspace") {
