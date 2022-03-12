@@ -25,11 +25,12 @@
 	}
 
 	let width = solution.length;
+	let height = width + 1;
 </script>
 
 <svelte:window on:keydown={enterLetter} />
 <grid>
-	{#each new Array(width) as _}
+	{#each new Array(height) as _}
 		<row>
 			{#each new Array(width) as _, i}
 				<Letter letter={word[i] ?? ""} />
