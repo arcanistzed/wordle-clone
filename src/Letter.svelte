@@ -1,5 +1,5 @@
-<script>
-	export let letter;
+<script lang="ts">
+	export let letter = "";
 
 	let state = "incorrect";
 </script>
