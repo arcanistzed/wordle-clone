@@ -8,10 +8,10 @@
 </script>
 
 <grid>
-	{#each new Array(width) as _, i}
+	{#each new Array(width) as _}
 		<row>
-			{#each new Array(width) as _, j}
-				<Letter letter={word[j] ?? ""} />
+			{#each new Array(width) as _, i}
+				<Letter letter={word[i] ?? ""} />
 			{/each}
 		</row>
 	{/each}
