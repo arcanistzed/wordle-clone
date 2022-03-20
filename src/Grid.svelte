@@ -4,8 +4,8 @@
 	const words: string[][] = [];
 	let row = 0;
 
-	const list = ["apple" , "peach", "pears", "orange", "banana", "lemon", "kiwis" ];
-	let solution = list[Math.floor(Math.random() * list.length)];
+	const list = ["apple", "peach", "pears", "orange", "banana", "lemon", "kiwis"];
+	const solution = list[Math.floor(Math.random() * list.length)];
 
 	function enterLetter(event: KeyboardEvent) {
 		if (event.key === "Backspace") {
