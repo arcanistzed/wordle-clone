@@ -4,10 +4,12 @@
 	export let letter = "";
 	export let solution = "";
 	export let word = "";
+	export let position = 0;
 
 	$: state =
-		// FIXME: APLLE, APELE, etc.
-		letter.toLowerCase() === solution[word?.lastIndexOf(letter)] && letter
+		word === ""
+			? ""
+			: letter.toLowerCase() === solution[position] && letter
 			? "correct"
 			: solution.toLowerCase().includes(letter.toLowerCase()) && letter
 			? "almost"
