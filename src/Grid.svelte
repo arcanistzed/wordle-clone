@@ -6,6 +6,7 @@
 
 	const list = ["apple", "peach", "pears", "orange", "banana", "lemon", "kiwis"];
 	const solution = list[Math.floor(Math.random() * list.length)];
+	console.log(solution);
 
 	function enterLetter(event: KeyboardEvent) {
 		if (event.key === "Backspace") {
