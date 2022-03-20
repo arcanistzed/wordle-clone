@@ -23,8 +23,8 @@
 		if (word.join("").toLowerCase() === solution) {
 			row++;
 			setTimeout(() => {
-			alert("Correct! Starting over with a new word...");
-			location.reload();
+				alert("Correct! Starting over with a new word...");
+				location.reload();
 			}, 500);
 		} else {
 			if (row + 1 < height) {
@@ -32,8 +32,8 @@
 			} else {
 				row++;
 				setTimeout(() => {
-				alert("You lost! Starting over with a new word...");
-				location.reload();
+					alert("You lost! Starting over with a new word...");
+					location.reload();
 				}, 500);
 			}
 		}
@@ -48,7 +48,10 @@
 	{#each new Array(height) as _, i}
 		<row>
 			{#each new Array(width) as _, j}
+				{#if i < row}
 					<Letter {solution} word={words[i]?.join("")} letter={words[i]?.[j] ?? ""} position={j} />
+				{:else if i === row}
+					<Letter {solution} word={""} letter={words[i]?.[j] ?? ""} position={j} />
 				{:else}
 					<Letter {solution} word={""} letter={""} />
 				{/if}
