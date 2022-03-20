@@ -20,14 +20,20 @@
 
 	function submitGuess(word: string[]) {
 		if (word.join("").toLowerCase() === solution) {
+			row++;
+			setTimeout(() => {
 			alert("Correct! Starting over with a new word...");
 			location.reload();
+			}, 500);
 		} else {
 			if (row + 1 < height) {
 				row++;
 			} else {
+				row++;
+				setTimeout(() => {
 				alert("You lost! Starting over with a new word...");
 				location.reload();
+				}, 500);
 			}
 		}
 	}
