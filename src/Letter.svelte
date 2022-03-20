@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { fade } from "svelte/transition";
+
 	export let letter = "";
 	export let solution = "";
 	export let word = "";
@@ -13,7 +15,9 @@
 </script>
 
 <letter class={state}>
-	{letter}
+	{#key letter}
+		<span in:fade>{letter}</span>
+	{/key}
 </letter>
 
 <style scoped>
