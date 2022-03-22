@@ -22,8 +22,8 @@
 		}
 	}
 
-	function submitGuess(word: string[]) {
-		if (word.join("").toLowerCase() === solution) {
+	function submitGuess(guess: string[]) {
+		if (guess.join("").toLowerCase() === solution) {
 			row++;
 			setTimeout(() => {
 				alert("Correct! Starting over with a new word...");
@@ -49,11 +49,11 @@
 		<row>
 			{#each new Array(width) as _, j}
 				{#if i < row}
-					<Letter {solution} word={words[i]?.join("")} letter={words[i]?.[j] ?? ""} position={j} />
+					<Letter {solution} guess={words[i]?.join("")} letter={words[i]?.[j] ?? ""} position={j} />
 				{:else if i === row}
-					<Letter {solution} word={""} letter={words[i]?.[j] ?? ""} position={j} />
+					<Letter {solution} guess={""} letter={words[i]?.[j] ?? ""} position={j} />
 				{:else}
-					<Letter {solution} word={""} letter={""} />
+					<Letter {solution} guess={""} letter={""} />
 				{/if}
 			{/each}
 		</row>

@@ -3,11 +3,11 @@
 
 	export let letter = "";
 	export let solution = "";
-	export let word = "";
+	export let guess = "";
 	export let position = 0;
 
 	$: state =
-		word === ""
+		guess === ""
 			? ""
 			: letter.toLowerCase() === solution[position] && letter
 			? "correct"
