@@ -43,7 +43,7 @@
 	const height = width + 1;
 </script>
 
-<svelte:window on:keydown={enterLetter} />
+<svelte:window on:keydown={enterLetter} on:pointerdown={() => navigator.virtualKeyboard.show()}/>
 <grid>
 	{#each new Array(height) as _, i}
 		<row>
