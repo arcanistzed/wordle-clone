@@ -43,7 +43,12 @@
 	}
 </script>
 
-<svelte:window on:keydown={enterLetter} on:pointerdown={() => navigator.virtualKeyboard.show()}/>
+<svelte:window
+	on:keydown={enterLetter}
+	on:pointerdown={() =>
+		/* @ts-ignore */
+		navigator.virtualKeyboard.show()}
+/>
 <grid>
 	{#each new Array(height) as _, i}
 		<row>
