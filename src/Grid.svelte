@@ -8,13 +8,16 @@
 	const solution = list[Math.floor(Math.random() * list.length)];
 	console.log(solution);
 
+	const width = solution.length;
+	const height = width + 1;
+
 	function enterLetter(event: KeyboardEvent) {
 		if (event.key === "Backspace") {
 			words[row] = words[row]?.slice(0, -1);
 		} else if (event.key === "Enter" && words[row]?.length >= solution.length) {
 			console.log("Pressed enter");
 			submitGuess(words[row]);
-		} else if (event.key.match("^[A-Za-z]$")) {
+		} else if (event.key.match("^[A-Za-z]$") && (words[row]?.length ?? 0) < width) {
 			words[row] = [...(words[row] ?? []), event.key.toUpperCase()];
 		}
 	}
@@ -38,9 +41,6 @@
 			}
 		}
 	}
-
-	const width = solution.length;
-	const height = width + 1;
 </script>
 
 <svelte:window on:keydown={enterLetter} on:pointerdown={() => navigator.virtualKeyboard.show()}/>
