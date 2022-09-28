@@ -1,24 +1,47 @@
 <script lang="ts">
 	import { fade } from "svelte/transition";
 
-	export let letter = "";
 	export let solution = "";
 	export let guess = "";
+	export let value = "";
 	export let position = 0;
+	export let row = 0;
+	export let finished = false;
 
-	$: state =
-		guess === ""
-			? ""
-			: letter.toLowerCase() === solution[position] && letter
-			? "correct"
-			: solution.toLowerCase().includes(letter.toLowerCase()) && letter
-			? "almost"
-			: "incorrect";
+	// @ts-expect-error
+	const analysis = (globalThis.analysis ??= []);
+
+	$: state = (() => {
+		analysis[row] ??= new Map();
+		if (finished) {
+			if (value && value.toLowerCase() === solution[position] && guess) {
+				analysis[row].set(value, "correct");
+			} else if (
+				value &&
+				solution.toLowerCase().includes(value.toLowerCase()) &&
+				position === guess.indexOf(value)
+			) {
+				analysis[row].set(value, "almost");
+			} else {
+				analysis[row].set(value, "incorrect");
+			}
+
+			/* if ([...analysis[row].values()].includes("correct"))
+				analysis[row] = new Map(
+					[...analysis[row]].map(a => {
+						debugger;
+						if (a[1] === "almost") a[1] = "incorrect";
+						return a;
+					})
+				); */
+			return analysis[row].get(value);
+		}
+	})();
 </script>
 
 <letter class={state}>
-	{#key letter}
-		<span in:fade>{letter}</span>
+	{#key value}
+		<span in:fade>{value}</span>
 	{/key}
 </letter>
 

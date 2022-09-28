@@ -3,13 +3,18 @@
 
 	const words: string[][] = [];
 	let row = 0;
+	let width: number;
+	let height: number;
+	let solution: string;
 
-	const list = ["apple", "peach", "pears", "orange", "banana", "lemon", "kiwis"];
-	const solution = list[Math.floor(Math.random() * list.length)];
-	console.log(solution);
+	(async () => {
+		const list: string[] = await (await fetch("wordle-clone/list.json")).json();
+		solution = list[Math.floor(Math.random() * list.length)];
+		console.log(solution);
 
-	const width = solution.length;
-	const height = width + 1;
+		width = solution.length;
+		height = width + 1;
+	})();
 
 	function enterLetter(event: KeyboardEvent) {
 		if (event.key === "Backspace") {
@@ -53,13 +58,7 @@
 	{#each new Array(height) as _, i}
 		<row>
 			{#each new Array(width) as _, j}
-				{#if i < row}
-					<Letter {solution} guess={words[i]?.join("")} letter={words[i]?.[j] ?? ""} position={j} />
-				{:else if i === row}
-					<Letter {solution} guess={""} letter={words[i]?.[j] ?? ""} position={j} />
-				{:else}
-					<Letter {solution} guess={""} letter={""} />
-				{/if}
+				<Letter {solution} guess={words[i]?.join("")} value={words[i]?.[j] ?? ""} position={j} {row} finished={i < row} />
 			{/each}
 		</row>
 	{/each}

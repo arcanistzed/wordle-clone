@@ -37,6 +37,7 @@ export default {
 		format: "iife",
 		name: "app",
 		file: "public/wordle-clone/build/bundle.js",
+		exports: "named",
 	},
 	plugins: [
 		svelte({
