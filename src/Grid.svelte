@@ -8,7 +8,7 @@
 	let solution: string;
 
 	(async () => {
-		const list: string[] = await (await fetch("wordle-clone/list.json")).json();
+		const list: string[] = await (await fetch("/wordle-clone/list.json")).json();
 		solution = list[Math.floor(Math.random() * list.length)];
 		console.log(solution);
 
